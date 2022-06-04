@@ -1,3 +1,4 @@
+from django.views.generic.list import ListView
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
@@ -13,6 +14,12 @@ def index(request):
         'item_list' : item_list,
     }
     return render(request, 'food/index.html', context)
+
+class IndexClassView(ListView):
+    model = Item
+    template_name = 'food/index.html'
+    context_object_name = 'item_list'
+
 
 def items(request):
     return HttpResponse('<h1>This is an item view</h1>')
